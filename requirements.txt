@@ -1,0 +1,5 @@
+
+requests @ file:///croot/requests_1707355572290/work
+requests-file @ file:///Users/ktietz/demo/mc3/conda-bld/requests-file_1629455781986/work
+requests-toolbelt @ file:///croot/requests-toolbelt_1690874004362/work
+typing_extensions==4.11.0
