@@ -1,13 +1,40 @@
 from pydatabridge.pydatabridge import Configuration
+import requests
 
 
 class FirebaseBase:
+    """
+    Base class for Firebase operations.
+
+    Args:
+        config (Configuration): The Firebase configuration.
+    """
+
     def __init__(self, config: Configuration):
+        """
+        Initializes the FirebaseBase class with the provided configuration.
+
+        Args:
+            config (Configuration): The Firebase configuration.
+        """
         self.config = config
         self.headers = self.config.produce_headers()
         self.base_url = self.config.base_url
 
     def _send_request(self, method, endpoint, data=None, params=None, files=None):
+        """
+        Sends a request to the Firebase API.
+
+        Args:
+            method (str): The HTTP method (GET, POST, PUT, DELETE).
+            endpoint (str): The API endpoint.
+            data (dict): The request body data (for POST, PUT, DELETE methods).
+            params (dict): The request URL parameters.
+            files (dict): The files to upload (for POST method).
+
+        Returns:
+            dict: The JSON response from the API.
+        """
         url = f"{self.base_url}/{endpoint}"
         try:
             if method == "GET":

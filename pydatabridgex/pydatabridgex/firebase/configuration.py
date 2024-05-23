@@ -1,9 +1,29 @@
-from pydatabridge.pydatabridge import *
 import json
 from typing import Union
 
 
 class Configuration:
+    """
+    Represents the configuration for Firebase.
+
+    Args:
+        firebase_config (dict): The Firebase configuration.
+        service_account (Union[str, dict]): The service account credentials.
+        database_url (str): The URL of the Firebase database.
+        storage_bucket (str): The name of the Firebase storage bucket.
+        base_url (str, optional): The base URL for requests. Defaults to "https://fir-connect-ea9c9.uc.r.appspot.com".
+
+    Attributes:
+        firebase_config (dict): The Firebase configuration.
+        service_account (dict): The service account credentials.
+        database_url (str): The URL of the Firebase database.
+        storage_bucket (str): The name of the Firebase storage bucket.
+        base_url (str): The base URL for requests.
+
+    Methods:
+        produce_headers(): Generates the headers for requests.
+    """
+
     def __init__(
         self,
         firebase_config: dict,
@@ -12,6 +32,16 @@ class Configuration:
         storage_bucket: str,
         base_url: str = "https://fir-connect-ea9c9.uc.r.appspot.com",
     ):
+        """
+        Initializes the Configuration object.
+
+        Args:
+            firebase_config (dict): The Firebase configuration.
+            service_account (Union[str, dict]): The service account credentials.
+            database_url (str): The URL of the Firebase database.
+            storage_bucket (str): The name of the Firebase storage bucket.
+            base_url (str, optional): The base URL for requests. Defaults to "https://fir-connect-ea9c9.uc.r.appspot.com".
+        """
         self.firebase_config = firebase_config
         self.service_account = (
             json.load(open(service_account))
@@ -23,6 +53,12 @@ class Configuration:
         self.base_url = base_url
 
     def produce_headers(self):
+        """
+        Generates headers for requests.
+
+        Returns:
+            dict: The headers for requests.
+        """
         return {
             "firebaseconfig": json.dumps(self.firebase_config),
             "serviceaccount": json.dumps(self.service_account),
