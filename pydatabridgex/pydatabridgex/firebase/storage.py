@@ -1,4 +1,5 @@
 from pydatabridge.pydatabridge import Configuration
+from typing import Dict, Any
 import requests
 
 
@@ -19,7 +20,7 @@ class Storage(FirebaseBase):
         delete_file(path): Deletes a file.
     """
 
-    def __init__(self, config: Configuration):
+    def __init__(self, config: Configuration) -> None:
         """
         Initializes the Storage instance.
 
@@ -28,7 +29,31 @@ class Storage(FirebaseBase):
         """
         super().__init__(config)
 
-    def upload_byte8_array(self, path, image_base64):
+    def __repr__(self) -> str:
+        """
+        Return a string representation of the object.
+        """
+        return f"Storage(config={self.config})"
+
+    def __str__(self) -> str:
+        """
+        Return a string representation of the object.
+        """
+        return f"Storage: Config={self.config}"
+
+    def __len__(self) -> int:
+        """
+        Return the length of the object.
+        """
+        return len(self.config)
+
+    def __getitem__(self, key: str) -> Any:
+        """
+        Get an item from the object.
+        """
+        return self.config[key]
+
+    def upload_byte8_array(self, path: str, image_base64: str) -> Dict[str, Any]:
         """
         Uploads a base64-encoded image to Firebase Storage.
 
@@ -42,7 +67,7 @@ class Storage(FirebaseBase):
         data = {"path": path, "imageBase64": image_base64}
         return self._send_request("POST", "uploadByte8Array", data=data)
 
-    def upload_file(self, file_path, path):
+    def upload_file(self, file_path: str, path: str) -> Dict[str, Any]:
         """
         Uploads a file to Firebase Storage.
 
@@ -57,7 +82,7 @@ class Storage(FirebaseBase):
         data = {"path": path}
         return self._send_request("POST", "uploadFile", data=data, files=files)
 
-    def get_download_url(self, path):
+    def get_download_url(self, path: str) -> Dict[str, Any]:
         """
         Retrieves the download URL of a file from Firebase Storage.
 
@@ -70,7 +95,7 @@ class Storage(FirebaseBase):
         data = {"path": path}
         return self._send_request("POST", "getDownloadURL", data=data)
 
-    def delete_file(self, path):
+    def delete_file(self, path: str) -> Dict[str, Any]:
         """
         Deletes a file from Firebase Storage.
 

@@ -1,5 +1,5 @@
 import json
-from typing import Union
+from typing import Union, Dict
 
 
 class Configuration:
@@ -7,15 +7,15 @@ class Configuration:
     Represents the configuration for Firebase.
 
     Args:
-        firebase_config (dict): The Firebase configuration.
+        firebase_config (Dict[str, Union[str, int, bool]]): The Firebase configuration.
         service_account (Union[str, dict]): The service account credentials.
         database_url (str): The URL of the Firebase database.
         storage_bucket (str): The name of the Firebase storage bucket.
         base_url (str, optional): The base URL for requests. Defaults to "https://fir-connect-ea9c9.uc.r.appspot.com".
 
     Attributes:
-        firebase_config (dict): The Firebase configuration.
-        service_account (dict): The service account credentials.
+        firebase_config (Dict[str, Union[str, int, bool]]): The Firebase configuration.
+        service_account (Union[str, dict]): The service account credentials.
         database_url (str): The URL of the Firebase database.
         storage_bucket (str): The name of the Firebase storage bucket.
         base_url (str): The base URL for requests.
@@ -26,17 +26,17 @@ class Configuration:
 
     def __init__(
         self,
-        firebase_config: dict,
+        firebase_config: Dict[str, Union[str, int, bool]],
         service_account: Union[str, dict],
         database_url: str,
         storage_bucket: str,
         base_url: str = "https://fir-connect-ea9c9.uc.r.appspot.com",
-    ):
+    ) -> None:
         """
         Initializes the Configuration object.
 
         Args:
-            firebase_config (dict): The Firebase configuration.
+            firebase_config (Dict[str, Union[str, int, bool]]): The Firebase configuration.
             service_account (Union[str, dict]): The service account credentials.
             database_url (str): The URL of the Firebase database.
             storage_bucket (str): The name of the Firebase storage bucket.
@@ -52,12 +52,12 @@ class Configuration:
         self.storage_bucket = storage_bucket
         self.base_url = base_url
 
-    def produce_headers(self):
+    def produce_headers(self) -> Dict[str, str]:
         """
         Generates headers for requests.
 
         Returns:
-            dict: The headers for requests.
+            Dict[str, str]: The headers for requests.
         """
         return {
             "firebaseconfig": json.dumps(self.firebase_config),
@@ -66,7 +66,7 @@ class Configuration:
             "storagebucket": self.storage_bucket,
         }
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return (
             f"Configuration(firebase_config={self.firebase_config}, "
             f"service_account={self.service_account}, "
@@ -74,10 +74,10 @@ class Configuration:
             f"storage_bucket={self.storage_bucket})"
         )
 
-    def __str__(self):
+    def __str__(self) -> str:
         return json.dumps(self.produce_headers(), indent=4)
 
-    def __eq__(self, other):
+    def __eq__(self, other: object) -> bool:
         if isinstance(other, Configuration):
             return (
                 self.firebase_config == other.firebase_config
@@ -87,10 +87,10 @@ class Configuration:
             )
         return False
 
-    def __ne__(self, other):
+    def __ne__(self, other: object) -> bool:
         return not self.__eq__(other)
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         return hash(
             (
                 json.dumps(self.firebase_config),
@@ -100,10 +100,10 @@ class Configuration:
             )
         )
 
-    def __len__(self):
+    def __len__(self) -> int:
         return 4
 
-    def __getitem__(self, key):
+    def __getitem__(self, key: str) -> Union[str, dict]:
         if key == "firebase_config":
             return self.firebase_config
         elif key == "service_account":
@@ -115,7 +115,7 @@ class Configuration:
         else:
             raise KeyError(key)
 
-    def __setitem__(self, key, value):
+    def __setitem__(self, key: str, value: Union[str, dict]) -> None:
         if key == "firebase_config":
             self.firebase_config = value
         elif key == "service_account":
@@ -127,7 +127,7 @@ class Configuration:
         else:
             raise KeyError(key)
 
-    def __call__(self):
+    def __call__(self) -> Dict[str, str]:
         return self.produce_headers()
 
     def __iter__(self):

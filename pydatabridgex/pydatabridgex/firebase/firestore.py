@@ -1,4 +1,5 @@
 import requests
+from typing import Dict, Any
 from pydatabridge.pydatabridge import Configuration
 
 
@@ -21,7 +22,7 @@ class Firestore(FirebaseBase):
         read_all_documents(req): Reads all documents.
     """
 
-    def __init__(self, config: Configuration):
+    def __init__(self, config: Configuration) -> None:
         """
         Initializes the Firestore instance.
 
@@ -30,74 +31,98 @@ class Firestore(FirebaseBase):
         """
         super().__init__(config)
 
-    def create_document(self, data):
+    def __repr__(self) -> str:
+        """
+        Return a string representation of the object.
+        """
+        return f"Firestore(config={self.config})"
+
+    def __str__(self) -> str:
+        """
+        Return a string representation of the object.
+        """
+        return f"Firestore: Config={self.config}"
+
+    def __len__(self) -> int:
+        """
+        Return the length of the object.
+        """
+        return len(self.config)
+
+    def __getitem__(self, key: str) -> Any:
+        """
+        Get an item from the object.
+        """
+        return self.config[key]
+
+    def create_document(self, data: Dict[str, Any]) -> Dict[str, Any]:
         """
         Creates a new document.
 
         Args:
-            data (dict): The data to be stored.
+            data (Dict[str, Any]): The data to be stored.
 
         Returns:
-            dict: The response data from the server.
+            Dict[str, Any]: The response data from the server.
         """
         return self._send_request("POST", "", data={"data": data})
 
-    def read_document(self, req):
+    def read_document(self, req: Dict[str, Any]) -> Dict[str, Any]:
         """
         Reads a document.
 
         Args:
-            req (dict): The request parameters.
+            req (Dict[str, Any]): The request parameters.
 
         Returns:
-            dict: The response data from the server.
+            Dict[str, Any]: The response data from the server.
         """
         return self._send_request("GET", "", params=req)
 
-    def update_document(self, data):
+    def update_document(self, data: Dict[str, Any]) -> Dict[str, Any]:
         """
         Updates a document.
 
         Args:
-            data (dict): The updated data.
+            data (Dict[str, Any]): The updated data.
 
         Returns:
-            dict: The response data from the server.
+            Dict[str, Any]: The response data from the server.
         """
         return self._send_request("PUT", "", data={"data": data})
 
-    def delete_document(self, req):
+    def delete_document(self, req: Dict[str, Any]) -> Dict[str, Any]:
         """
         Deletes a document.
 
         Args:
-            req (dict): The request parameters.
+            req (Dict[str, Any]): The request parameters.
 
         Returns:
-            dict: The response data from the server.
+            Dict[str, Any]: The response data from the server.
         """
         return self._send_request("DELETE", "", params=req)
 
-    def read_paths(self, req):
+    def read_paths(self, req: Dict[str, Any]) -> Dict[str, Any]:
         """
         Reads paths.
 
         Args:
-            req (dict): The request parameters.
+            req (Dict[str, Any]): The request parameters.
 
         Returns:
-            dict: The response data from the server.
+            Dict[str, Any]: The response data from the server.
         """
         return self._send_request("GET", "paths", params=req)
 
-    def read_all_documents(self, req):
+    def read_all_documents(self, req: Dict[str, Any]) -> Dict[str, Any]:
         """
         Reads all documents.
 
         Args:
-            req (dict): The request parameters.
+            req (Dict[str, Any]): The request parameters.
 
         Returns:
-            dict: The response data from the server.
+            Dict[str, Any]: The response data from the server.
         """
         return self._send_request("GET", "all", params=req)

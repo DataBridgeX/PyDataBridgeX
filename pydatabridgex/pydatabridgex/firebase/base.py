@@ -1,3 +1,4 @@
+from typing import Dict, Any
 from pydatabridge.pydatabridge import Configuration
 import requests
 
@@ -10,7 +11,7 @@ class FirebaseBase:
         config (Configuration): The Firebase configuration.
     """
 
-    def __init__(self, config: Configuration):
+    def __init__(self, config: Configuration) -> None:
         """
         Initializes the FirebaseBase class with the provided configuration.
 
@@ -21,7 +22,38 @@ class FirebaseBase:
         self.headers = self.config.produce_headers()
         self.base_url = self.config.base_url
 
-    def _send_request(self, method, endpoint, data=None, params=None, files=None):
+    def __repr__(self) -> str:
+        """
+        Return a string representation of the object.
+        """
+        return f"FirebaseBase(config={self.config})"
+
+    def __str__(self) -> str:
+        """
+        Return a string representation of the object.
+        """
+        return f"FirebaseBase: Config={self.config}"
+
+    def __len__(self) -> int:
+        """
+        Return the length of the object.
+        """
+        return len(self.config)
+
+    def __getitem__(self, key: str) -> Any:
+        """
+        Get an item from the object.
+        """
+        return self.config[key]
+
+    def _send_request(
+        self,
+        method: str,
+        endpoint: str,
+        data: Dict[str, Any] = None,
+        params: Dict[str, Any] = None,
+        files: Dict[str, Any] = None,
+    ) -> Dict[str, Any]:
         """
         Sends a request to the Firebase API.
 
