@@ -21,7 +21,7 @@ pip install PyDataBridgeX
 
 ## Contributing
 
-Contributions are welcome! Whether you want to report a bug, request a feature, or contribute code, feel free to open an issue or submit a pull request on [GitHub](https://github.com/your-repo-url).
+Contributions are welcome! Whether you want to report a bug, request a feature, or contribute code, feel free to open an issue or submit a pull request on [GitHub](https://github.com/DataBridgeX/PyDataBridgeX).
 
 ## License
 
