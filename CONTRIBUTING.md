@@ -10,11 +10,11 @@ Please review our [Code of Conduct](CODE_OF_CONDUCT.md) before contributing to e
 
 ### Reporting Bugs
 
-If you encounter a bug while using PyDataBridge, please open an issue on our [GitHub repository](https://github.com/your-repo-url) and include detailed information about the issue, such as steps to reproduce it and any relevant error messages or screenshots.
+If you encounter a bug while using PyDataBridge, please open an issue on our [GitHub repository](https://github.com/DataBridgeX/PyDataBridgeX) and include detailed information about the issue, such as steps to reproduce it and any relevant error messages or screenshots.
 
 ### Requesting Features
 
-Have an idea for a new feature or improvement? Feel free to open an issue on our [GitHub repository](https://github.com/your-repo-url) to discuss your idea. We appreciate your feedback and suggestions!
+Have an idea for a new feature or improvement? Feel free to open an issue on our [GitHub repository](https://github.com/DataBridgeX/PyDataBridgeX) to discuss your idea. We appreciate your feedback and suggestions!
 
 ### Submitting Changes
 
@@ -34,13 +34,13 @@ To set up a development environment for PyDataBridge, follow these steps:
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-repo-url.git
+git clone https://github.com/DataBridgeX/PyDataBridgeX.git
 ```
 
 2. Install the required dependencies:
 
 ```bash
-cd PyDataBridge
+cd PyDataBridgeX
 pip install -r requirements.txt
 ```
 
@@ -52,4 +52,4 @@ PyDataBridge follows the PEP 8 style guide for Python code. Please ensure that y
 
 ## Feedback
 
-If you have any questions, feedback, or suggestions, feel free to reach out to us on our [GitHub repository](https://github.com/your-repo-url).
+If you have any questions, feedback, or suggestions, feel free to reach out to us on our [GitHub repository](https://github.com/DataBridgeX/PyDataBridgeX).
